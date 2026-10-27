@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🛡️ Vairav DFIR Toolkit
+# 🛡️ DFIR Toolkit
 
 ### One script. One command. A complete forensic triage.
 
@@ -12,7 +12,7 @@
 ![Read-only](https://img.shields.io/badge/host%20impact-read--only-2E8B57?style=for-the-badge)
 ![MITRE](https://img.shields.io/badge/MITRE-ATT%26CK%20mapped-C8102E?style=for-the-badge)
 
-*Built by the Vairav Technology CSOC from real incident work (case VAIRAV-DFIR-2026-002).*
+*Developed by [**3tternp**](https://github.com/3tternp) from real incident-response work.*
 
 </div>
 
@@ -77,7 +77,7 @@ This toolkit runs the full live-response process for you in one go:
 - [ ] 💾 You have an **external USB drive** or network share for the output (avoid writing to the suspect disk)
 - [ ] 📏 There is **enough free space**: ~2–10 GB is typical, **plus the size of RAM** if you capture memory
 - [ ] 🔏 You have **verified the toolkit checksums** (see below)
-- [ ] 📝 You have a **Case ID** ready (e.g. `VAIRAV-DFIR-2026-003`)
+- [ ] 📝 You have a **Case ID** ready (e.g. `CASE-2026-003`)
 - [ ] ⚠️ The host is **still powered on**. Collect **before** rebooting, isolating with a reboot, or running AV cleanup
 
 <details>
@@ -108,7 +108,7 @@ sha256sum -c SHA256SUMS.txt
 ```powershell
 cd E:\DFIR_Toolkit
 powershell.exe -ExecutionPolicy Bypass -File .\Invoke-DFIRCollection.ps1 `
-    -CaseId VAIRAV-DFIR-2026-003 `
+    -CaseId CASE-2026-003 `
     -Examiner "Your Name" `
     -OutputRoot E:\Evidence
 ```
@@ -124,7 +124,7 @@ powershell.exe -ExecutionPolicy Bypass -File .\Invoke-DFIRCollection.ps1 `
 ```bash
 cd /mnt/usb/dfir_toolkit
 sudo bash dfir_collect_linux.sh \
-    -c VAIRAV-DFIR-2026-003 \
+    -c CASE-2026-003 \
     -e "Your Name" \
     -o /mnt/usb/evidence
 ```
@@ -138,8 +138,8 @@ sudo bash dfir_collect_linux.sh \
 ================================================================
  VERDICT : COMPROMISE INDICATED - isolate host, preserve evidence, escalate to incident response
  Findings: Critical=9 High=3 Medium=4 Low=1 Info=2
- Report  : E:\Evidence\VAIRAV-DFIR-2026-003_DESKTOP-OGN3FKJ_20261027T091134Z\REPORT.html
- Evidence: E:\Evidence\VAIRAV-DFIR-2026-003_DESKTOP-OGN3FKJ_20261027T091134Z
+ Report  : E:\Evidence\CASE-2026-003_DESKTOP-OGN3FKJ_20261027T091134Z\REPORT.html
+ Evidence: E:\Evidence\CASE-2026-003_DESKTOP-OGN3FKJ_20261027T091134Z
  Duration: 612 s
 ================================================================
 ```
@@ -324,7 +324,7 @@ regkey,HKLM:\SOFTWARE\$SHconfig
 | 🗝️ `regkey` | Registry key existence | 🪟 |
 
 > [!NOTE]
-> The **built-in defaults** already contain the indicators from case **VAIRAV-DFIR-2026-002** (Sapphire miner, MineFleet, the kis.dll loader and the initial-access server). Your file **adds to** them.
+> The **built-in defaults** already contain the indicators from a **2026 loader / cryptominer investigation** (Sapphire miner, MineFleet, the kis.dll loader and the initial-access server). Your file **adds to** them.
 
 ---
 
@@ -406,7 +406,7 @@ Yes. Deploy it through your EDR's live-response feature, GPO/Intune (Windows), o
 
 <div align="center">
 
-### 🛡️ Vairav Technology Security Pvt. Ltd. · Cyber Security Operations Centre
+### 🛡️ DFIR Toolkit · developed by [3tternp](https://github.com/3tternp)
 
 *Collect first. Analyse second. Act on evidence.*
 

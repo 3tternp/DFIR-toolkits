@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # =============================================================================================
-#  Vairav CSOC - Linux Digital Forensic Collection & Triage (single script)
+#  3tternp DFIR Toolkit - Linux Digital Forensic Collection & Triage (single script)
+#  Author: 3tternp (https://github.com/3tternp)
 #
 #  Runs a complete live-response forensic process on a Linux host:
 #    1. Case setup, logging, chain-of-custody record
@@ -94,11 +95,11 @@ clean() { tr '\t\r\n' '   ' | cut -c1-1500; }
 finding() { printf '%s\t%s\t%s\t%s\t%s\t%s\n' "$1" "$2" "$(echo "$3" | clean)" "$(echo "$4" | clean)" "$(echo "$5" | clean)" "${6:-}" >> "$FIND_TSV"; }
 
 IS_ROOT=0; [ "$(id -u)" = "0" ] && IS_ROOT=1
-log "Vairav DFIR Linux collector v$SCRIPT_VERSION - case $CASE_ID - host $HOST - examiner $EXAMINER"
+log "3tternp DFIR Linux collector v$SCRIPT_VERSION - case $CASE_ID - host $HOST - examiner $EXAMINER"
 [ $IS_ROOT -eq 1 ] || log "NOT running as root - collection will be incomplete" WARN
 
 # ---------------------------------------------------------------------------------------------
-#  IOC set (defaults from VAIRAV-DFIR-2026-002 + generic Linux miner/loader indicators)
+#  IOC set (defaults from a 2026 loader/cryptominer investigation + generic Linux miner/loader indicators)
 # ---------------------------------------------------------------------------------------------
 IOC_IPS="87.58.216.204 222.34.45.61 134.156.34.81 139.180.209.157 108.181.196.50"
 IOC_DOMAINS="golden-age.shop xai830k.com singularity-drop.com"
@@ -480,7 +481,7 @@ td{border-bottom:1px solid #e3e7f0;padding:6px 7px;vertical-align:top}td.ev{font
 .sev.Critical{background:#8b0000}.sev.High{background:#C8102E}.sev.Medium{background:#d9822b}.sev.Low{background:#5b6b9a}.sev.Info{background:#8a94a6}
 input{padding:6px;width:300px;margin-bottom:8px}
 </style></head><body>
-<header><h1>Digital Forensic Triage Report - $HOST</h1><p>Case $CASE_ID &middot; Examiner $(echo "$EXAMINER" | sed "$esc") &middot; Collected $(date -d "@$START_EPOCH" '+%Y-%m-%d %H:%M:%S %z') &middot; Vairav CSOC Linux collector v$SCRIPT_VERSION</p></header>
+<header><h1>Digital Forensic Triage Report - $HOST</h1><p>Case $CASE_ID &middot; Examiner $(echo "$EXAMINER" | sed "$esc") &middot; Collected $(date -d "@$START_EPOCH" '+%Y-%m-%d %H:%M:%S %z') &middot; 3tternp DFIR Toolkit (Linux) v$SCRIPT_VERSION</p></header>
 <main><div class="card"><div class="verdict">$VERDICT</div>
 <span class="kpi"><b style="color:#8b0000">$c</b>Critical</span><span class="kpi"><b style="color:#C8102E">$h</b>High</span><span class="kpi"><b style="color:#d9822b">$m</b>Medium</span><span class="kpi"><b>$lo</b>Low</span><span class="kpi"><b>$inf</b>Info</span>
 <p style="font-size:12.5px;color:#5f6b7a">Automated triage: findings are leads for an analyst, not final conclusions. The collector made no changes to the host.</p>

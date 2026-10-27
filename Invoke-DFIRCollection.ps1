@@ -1,6 +1,7 @@
 <#
 .SYNOPSIS
-    Vairav CSOC - Windows Digital Forensic Collection & Triage (single script).
+    3tternp DFIR Toolkit - Windows Digital Forensic Collection & Triage (single script).
+    Author: 3tternp (https://github.com/3tternp)
 
 .DESCRIPTION
     Runs a complete live-response forensic process on a Windows host:
@@ -32,7 +33,7 @@
 .PARAMETER MaxSampleMB  Do not copy samples larger than this (default 50).
 
 .EXAMPLE
-    powershell.exe -ExecutionPolicy Bypass -File .\Invoke-DFIRCollection.ps1 -CaseId VAIRAV-DFIR-2026-003 -Examiner "Prem Basnet" -OutputRoot E:\Evidence
+    powershell.exe -ExecutionPolicy Bypass -File .\Invoke-DFIRCollection.ps1 -CaseId CASE-2026-003 -Examiner "Your Name" -OutputRoot E:\Evidence
 
 .NOTES
     Run from an elevated PowerShell (Administrator). Windows PowerShell 5.1 or PowerShell 7.
@@ -214,7 +215,7 @@ $MiningPorts    = @(3333, 3334, 3335, 4444, 5555, 6666, 7777, 8888, 9999, 10128,
 $RmmRx          = '(?i)(anydesk|teamviewer|screenconnect|connectwise|rustdesk|atera|splashtop|ngrok|netsupport|remcos|logmein|gotoassist|supremo|ammyy|radmin|dwservice|tightvnc|ultravnc|realvnc|meshagent|action1|level\.io|zoho assist)'
 
 # --------------------------------------------------------------------------------------------
-#  IOC set (defaults from VAIRAV-DFIR-2026-002) - extend with -IocFile
+#  IOC set (defaults from a 2026 loader/cryptominer investigation) - extend with -IocFile
 # --------------------------------------------------------------------------------------------
 $IocDb = @{
     ip      = @('87.58.216.204','222.34.45.61','134.156.34.81','139.180.209.157','108.181.196.50')
@@ -288,7 +289,7 @@ function Test-ExeSuspicious {
     return $null
 }
 
-Write-Log "Vairav DFIR collector v$ScriptVersion - case $CaseId - host $HostName - examiner $Examiner"
+Write-Log "3tternp DFIR collector v$ScriptVersion - case $CaseId - host $HostName - examiner $Examiner"
 if (-not $Script:IsAdmin) { Write-Log 'NOT running as Administrator - collection will be incomplete (Security log, hives, VSS copies, other users).' 'WARN' }
 try { Start-Transcript -LiteralPath (Join-Path $Dirs.Case 'transcript.txt') -Force | Out-Null } catch { }
 
@@ -1007,7 +1008,7 @@ td{border-bottom:1px solid #e3e7f0;padding:6px 7px;vertical-align:top} td.ev{fon
 .sev.Critical{background:#8b0000}.sev.High{background:#C8102E}.sev.Medium{background:#d9822b}.sev.Low{background:#5b6b9a}.sev.Info{background:#8a94a6}
 input{padding:6px;width:300px;margin-bottom:8px} .meta td:first-child{font-weight:600;width:200px;color:#0A1F6B}
 </style></head><body>
-<header><h1>Digital Forensic Triage Report - $(& $enc $HostName)</h1><p>Case $(& $enc $CaseId) &middot; Examiner $(& $enc $Examiner) &middot; Collected $($StartTime.ToString('yyyy-MM-dd HH:mm:ss zzz')) &middot; Vairav CSOC collector v$ScriptVersion</p></header>
+<header><h1>Digital Forensic Triage Report - $(& $enc $HostName)</h1><p>Case $(& $enc $CaseId) &middot; Examiner $(& $enc $Examiner) &middot; Collected $($StartTime.ToString('yyyy-MM-dd HH:mm:ss zzz')) &middot; 3tternp DFIR Toolkit v$ScriptVersion</p></header>
 <main>
 <div class="card"><div class="verdict">$verdict</div>
 <span class="kpi"><b style="color:#8b0000">$($cnt.Critical)</b>Critical</span><span class="kpi"><b style="color:#C8102E">$($cnt.High)</b>High</span><span class="kpi"><b style="color:#d9822b">$($cnt.Medium)</b>Medium</span><span class="kpi"><b>$($cnt.Low)</b>Low</span><span class="kpi"><b>$($cnt.Info)</b>Info</span>
