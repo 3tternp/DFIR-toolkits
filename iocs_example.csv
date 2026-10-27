@@ -1,0 +1,9 @@
+# type,value  - extra indicators merged with the built-in defaults
+# types: ip | domain | sha256 | string | path_regex | regkey (Windows only)
+ip,44.192.202.61
+ip,148.113.16.95
+domain,example-bad-domain.top
+# sha256,<64-hex SHA-256 of a known-bad file>
+string,minefleet/0.1.0
+path_regex,\\ProgramData\\Google\\Browser\\
+regkey,HKLM:\SOFTWARE\$SHconfig
